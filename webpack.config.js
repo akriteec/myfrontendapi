@@ -24,7 +24,7 @@ module:{
 		{ // babel use garera es6 ,7 es 5 , broser compatible 
 				// use babel on which files 
 			test:/\.js$/, // regex start with // end -> $ \->characeter escpae
-			/*exclude:/node_modules/,*/
+			exclude:/node_modules/,
 			use: 'babel-loader'
 
 
@@ -32,7 +32,9 @@ module:{
 		//for css files
 		{
 			test:/\.css$/,
-			exclude:/node_modules/,
+			// exclude:/node_modules/,
+			use:['style-loader','css-loader'] // to convert css to js
+		// from right first css loader second style loader
 		}
 
 	]

@@ -14,6 +14,7 @@ import {
     Nav, Container,Row,Col,Card, Navbar, Form, FormControl, Button, Carousel
 
 } from 'react-bootstrap'
+import Regsitration from './components/Registration/Registration'
 
 
 
@@ -108,6 +109,16 @@ class Index extends React.Component {
                 </div>
                 </Row>
                 </Container>
+ <Switch>
+
+        
+
+                  <Route exact path="/registration">
+                  < Regsitration/>
+                  </Route>
+
+                  
+                </Switch>
       
                 </Router>
 

@@ -1,9 +1,10 @@
 import React from 'react'
+import MDBreact from "mdbreact";
+import ReactDOM from 'react-dom'
+import 'mdbreact/dist/css/mdb.css';
+import "./Registration.css"
 
-import { 
-  Form, Button, Container, FormGroup, FormText
-} from 'react-bootstrap'
-import { Label, Input } from 'reactstrap'
+import { Container, Row, Col, Card, CardBody, Button, Label, Input, Icon, ModalFooter } from 'mdbreact';
 import { Link, Redirect } from 'react-router-dom'
 import Axios from 'axios';
 class Registration extends React.Component {
@@ -124,42 +125,92 @@ return (
 
 
   return(
- <Container>
- <div style={{width:'800px'}}>
-                <h1 className="text-center" style={{width: "100%"}}>Register Form</h1>
-                <Form style = {{marginLeft: '200px',background: this.state.color}}>
-                    <FormGroup>
-                        <Label for='fullname'>Full Name</Label>
-                        <Input type='text' name='fullname' id='fullname'
-                            value={this.state.fullname} onChange={this.fullnameChangeHandler} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for='address'>Address</Label>
-                        <Input type='text' name='address' id='address'
-                            value={this.state.address} onChange={this.addressChangeHandler} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for='phone'>Phone</Label>
-                        <Input name='phone' id='phone' type='text'
-                            value={this.state.phone} onChange={this.phoneChangeHandler} />
-                    </FormGroup>
-                     <FormGroup>
-                        <Label for='email'>Email</Label>
-                        <Input type='text' name='email' id='email'
-                            value={this.state.email} onChange={this.emailChangeHandler} />
-                    </FormGroup>
-                    
-                    <FormGroup>
-                        <Label for='password'>Password</Label>
-                        <Input type='password' name='password' id='password'
-                            value={this.state.password} onChange={this.passwordChangeHandler} />
-                    </FormGroup>
-                    <Button color='primary' onClick={this.handleSubmit}>Register!</Button>
-                   
-                </Form>
-                 <h4 className="text-center">Already a user. <Link to='/'>Login here!</Link></h4>
-                </div>
-            </Container>
+  <Container>
+     
+    <Row >
+       {/* <Col md="2" style={{marginRight:'800px',height:'500px'}} >
+        <img src= "./Image/s.jpg" />
+        </Col>*/}
+    
+        <Col md="6" style={{marginRight:'100px'}} >
+          <Card style={{marginTop:'opx'}}>
+            <CardBody className="mx-6">
+              <div className="text-center">
+                <h3 className="dark-grey-text mb-5">
+                  <strong >NEW ACCOUNT?</strong>
+                  <h6>Create one for FREE here and become a Grocery member.</h6>
+                </h3>
+              </div>
+               <Input 
+                label="Fullname"
+                group
+                type="text" name='fullname' id='fullname'
+                validate
+                error="wrong"
+                success="right" value={this.state.fullname} onChange={this.fullnameChangeHandler} 
+              />
+               <Input 
+                label="Address"
+                group
+                type="text" name='address' id='address'
+                validate
+                error="wrong"
+                success="right" value={this.state.address} onChange={this.addressChangeHandler} 
+              />
+               <Input 
+                label="Phone Number"
+                group
+                type="number" name='phone' id='phone'
+                validate
+                error="wrong"
+                success="right" value={this.state.phone} onChange={this.phoneChangeHandler} 
+              />
+              <Input 
+                label="Email"
+                group
+                type="email" name='email' id='email'
+                validate
+                error="wrong"
+                success="right" value={this.state.email} onChange={this.emailChangeHandler} 
+              />
+              <Input
+                label="Password"
+                group
+                type="password" name='password' id='password'
+                validate
+                containerClass="mb-0"  value={this.state.password} onChange={this.passwordChangeHandler}
+              />
+              
+              <div className="text-center mb-3">
+                <Button
+                  type="button"
+                  gradient="dusty-grass"
+                  rounded
+                  className="btn-block z-depth-1a"
+                  onClick={this.handleSubmit}
+                  
+                >
+                  Register
+                </Button>
+              </div>
+            </CardBody>
+            <ModalFooter className="mx-5 pt-3 mb-1">
+              <p className="font-small grey-text d-flex justify-content-end">
+                Already a member?
+                 <Link to='/' className="dusty-grass-text ml-1">Login Here! </Link> 
+
+               
+                
+              </p>
+            </ModalFooter>
+          </Card>
+        </Col>
+
+        <Col md="2" style={{marginLeft:'-5px', marginTop:'50px'}} >
+        <img src= "./Image/a.png" />
+        </Col>
+      </Row>
+    </Container>
   )
 }
 }

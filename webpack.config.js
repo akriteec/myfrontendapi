@@ -31,14 +31,37 @@ module:{
 		},
 		//for css files
 		{
-			test:/\.css$/,
+			test:/\.(css|sass)$/,
 			// exclude:/node_modules/,
-			use:['style-loader','css-loader'] // to convert css to js
+			use:['style-loader','css-loader', 'sass-loader'] // to convert css to js
 		// from right first css loader second style loader
+		},
+		{
+			test:/\.(png|jpg|jpeg|svg|gif)$/,
+			//use:'file-loader?[name].[ext]'
+			//use:'file-loader'
+
+			use:[
+			{
+				loader:'file-loader',
+				options:{
+					name:'[path][name].[ext]',
+				},
 		}
 
 	]
 },
+{
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+		loader: "file-loader"
+      },
+      {
+      test: /\.(jpg|png)$/,
+      loader: "url-loader?limit=25000",
+      //loader: 'file?name=[path][name].[ext]',
+      include: path.join(__dirname, 'public')
+    },
+]},
 
 //devserver to run/serve the application, only in development, node can be used to
 

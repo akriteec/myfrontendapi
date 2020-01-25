@@ -17,6 +17,7 @@ import {
 import { MDBCol, MDBContainer, MDBRow, MDBFooter,MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import Regsitration from './components/Registration/Registration'
+import Login from './components/Login/Login'
 
 
 
@@ -168,6 +169,10 @@ class Index extends React.Component {
 
                   <Route exact path="/registration">
                   < Regsitration/>
+                  </Route>
+
+		<Route exact path="/login">
+                  < Login/>
                   </Route>
 
                   

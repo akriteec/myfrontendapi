@@ -18,6 +18,7 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter,MDBNavbar, MDBNavbarBrand, MDBN
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import Regsitration from './components/Registration/Registration'
 import Login from './components/Login/Login'
+import Feedback from './components/Feedback/Feedback'
 
 
 
@@ -165,7 +166,9 @@ class Index extends React.Component {
 
  <Switch>
 
-        
+        	 <Route exact path="/feedback">
+                  < Feedback/>
+                  </Route>
 
                   <Route exact path="/registration">
                   < Regsitration/>

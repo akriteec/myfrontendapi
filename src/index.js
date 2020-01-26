@@ -19,7 +19,8 @@ MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import Regsitration from './components/Registration/Registration'
 import Login from './components/Login/Login'
 import Feedback from './components/Feedback/Feedback'
-
+import Home from './components/Home/Home'
+import About from './components/About/About'
 
 
 class Index extends React.Component {
@@ -128,8 +129,8 @@ class Index extends React.Component {
 </Navbar>*/}
 
  <MDBNavbar color="blue-gradient" dark expand="md" >
-        <MDBNavbarBrand style={{marginRight:'540px'}}>
-          <strong className="white-text">Navbar</strong>
+        <MDBNavbarBrand style={{marginRight:'460px'}}>
+          <strong className="white-text">GharkoGrocery</strong>
         </MDBNavbarBrand >
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -165,6 +166,12 @@ class Index extends React.Component {
                 </Container>
 
  <Switch>
+		<Route exact path="/home">
+                  < Home/>
+                  </Route>
+                  <Route exact path="/about">
+                  < About/>
+		  </Route>
 
         	 <Route exact path="/feedback">
                   < Feedback/>

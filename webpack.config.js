@@ -71,6 +71,7 @@ devServer:{
 	port:3027,
 	//to serve webpack files
 	hot:true,
+	historyApiFallback:true,
 	publicPath:"http://localhost:3027/dist/"
 
 }

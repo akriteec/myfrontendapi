@@ -21,6 +21,7 @@ import Login from './components/Login/Login'
 import Feedback from './components/Feedback/Feedback'
 import Home from './components/Home/Home'
 import About from './components/About/About'
+import AddProduct from './admin/AddProduct/AddProduct'
 
 
 class Index extends React.Component {
@@ -183,6 +184,9 @@ class Index extends React.Component {
 
 		<Route exact path="/login">
                   < Login/>
+                  </Route>
+		<Route exact path="/addproduct">
+                  < AddProduct/>
                   </Route>
 
                   

@@ -12,13 +12,62 @@ constructor(){
   super()
 
   this.state = {
-    
+    email:'',
+    password:''
 
   }
 }
 
 
+emailChangeHandler = (event) => {
 
+  this.setState({email: event.target.value})
+}
+
+passwordChangeHandler = (event) => {
+
+this.setState({password: event.target.value})
+  
+}
+
+formSubmitHandler = (e) => {
+  e.preventDefault()
+
+
+// use API call to post the data 
+//fetch byt default JS
+// Axios external package
+
+var headers = {
+
+'Content-Type':'application/json'
+// not 'x-form-urlencded '
+
+}
+
+var data = {
+
+  email:this.state.email,
+  password:this.state.password
+
+}
+
+//mfetch method XMLHTTPREquest
+   Axios.post('http://localhost:3000/users/login', data , headers)
+  .then(function(response){
+
+    console.log(response.data)
+
+    //store the token in local storage of broser for future use 
+
+    localStorage.setItem("token",response.data.userToken)
+
+  })
+  .catch(function(err){
+
+  })
+
+}
 
 render(){
 
@@ -27,7 +76,7 @@ render(){
 if(this.state.redirect){
 
 return (
-  <Redirect to='/home' />
+  <Redirect to='/registration' />
   )
 
 // toast message
@@ -49,13 +98,13 @@ return (
         <MDBCol md="5" style={{marginLeft:'-350px',marginTop:'15px'}} >
           <MDBCard style={{marginTop:'-1px',height:'428px'}}>
             <MDBCardBody className="mx-6">
-              <form  >
+              <form onSubmit={this.formSubmitHandler} >
                 <p className="h4 text-center py-4">Login</p>
                 <div className="grey-text">
 
 
                   <MDBInput
-                    label="Email" 
+                    label="Email" value={this.state.email} onChange={this.emailChangeHandler}
                     icon="envolope"
                     group
                     type="email"
@@ -65,7 +114,7 @@ return (
                   />
                   
                   <MDBInput
-                    label="Password" 
+                    label="Password" value={this.state.password} onChange={this.passwordChangeHandler}
                     icon="lock"
                     group
                     type="password"
@@ -77,8 +126,9 @@ return (
                  <MDBBtn
                   type="submit"
                   gradient="blue"
-                  rounded
+                  
                   className="btn-block z-depth-1a"
+                  onClick={this.state.redirect}
                  >
                   Login
                 </MDBBtn>

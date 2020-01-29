@@ -2,11 +2,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import * as serviceWorker from './serviceWorker';
+
+
 import {
     BrowserRouter as Router,
     Switch,
     Link, // ahref equiv
-    Route // to catch the cliked route
+    Route,
+     // to catch the cliked route
 
 } from 'react-router-dom'
 import {
@@ -208,5 +212,5 @@ ReactDOM.render(<Index />, document.getElementById('root'))
 
 
 
-
+serviceWorker.unregister();
 

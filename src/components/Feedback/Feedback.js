@@ -73,7 +73,7 @@ var data = {
 }
 
 //mfetch method XMLHTTPREquest
-  Axios.post('http://localhost:3023/feedback', data , headers)
+  Axios.post('http://localhost:3000/feedback/addFeedback', data , headers)
 
 .then( (response) => {
   console.log(response.data.status);
@@ -112,37 +112,7 @@ return (
 
 
   return(
- /*  
- <Container>
-  <div className="bg">
- <Row>
-
- <div style={{width:'800px'}}>
-                <h1 className="text-center" style={{width: "100%"}}>Contact Us Form</h1>
-                <Form style = {{marginLeft: '200px'}}>
-                    <FormGroup>
-                    <Img src={'./Images/b.jpg'} decode={false} />
-                        <Label for='yourname'>Your Name</Label>
-                        <Input type='text' name='yourname' id='yourname'
-                            value={this.state.fullname} onChange={this.yournameChangeHandler} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for='youremail'>Your Email</Label>
-                        <Input type='text' name='youremail' id='youremail'
-                            value={this.state.youremail} onChange={this.youremailChangeHandler} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for='yourfeedback'>Your Feedback</Label>
-                        <Input name='yourfeedback' id='yourfeedback' type='textarea'
-                            value={this.state.yourfeedback} onChange={this.yourfeedbackChangeHandler} />
-                    </FormGroup>
-                    <Button color='primary' onClick={this.handleSubmit}>Contact Us!</Button>
-                   
-                </Form>
-                </div>
-                </Row>*/
-
-
+ 
     <section className="my-5">
       <h2 className="h1-responsive font-weight-bold text-center my-5">
         Contact us
@@ -152,6 +122,7 @@ return (
         <MDBCol lg="5" className="lg-0 mb-4">
           <MDBCard style={{height:"500px", marginTop:"2px"}}>
             <MDBCardBody>
+            <form onSubmit={this.formSubmitHandler} >
                 <h3 className="mt-2">
                  Send Message Us
                 </h3>
@@ -160,34 +131,35 @@ return (
               </p>
               <div className="md-form">
                 <MDBInput
-                  icon="user"
+                  icon="user" value={this.state.yourname} onChange={this.yournameChangeHandler}
                   label="Your name"
                   iconClass="grey-text"
                   type="text"
-                  id="form-name" value={this.state.yourname} onChange={this.yournameChangeHandler}
+                  id="form-name" 
                 />
               </div>
               <div className="md-form">
                 <MDBInput
-                  icon="envelope"
+                  icon="envelope" value={this.state.youremail} onChange={this.youremailChangeHandler}
                   label="Your email"
                   iconClass="grey-text"
                   type="text"
-                  id="form-email" value={this.state.youremail} onChange={this.youremailChangeHandler}
+                  id="form-email" 
                 />
               </div>
               <div className="md-form">
                 <MDBInput
                   icon="tag"
-                  label="Your Feedback"
+                  label="Your Feedback" value={this.state.yourfeedback} onChange={this.yourfeedbackChangeHandler} 
                   iconClass="grey-text"
                   type="textarea"
-                  id="form-subject" value={this.state.yourfeedback} onChange={this.yourfeedbackChangeHandler} 
+                  id="form-subject" 
                 />
               </div>
               <div className="text-center">
-                <MDBBtn color="light-blue">Contact Us</MDBBtn>
+                <MDBBtn color="light-blue" type="submit">Contact Us</MDBBtn>
               </div>
+              </form>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
@@ -209,20 +181,20 @@ return (
           <MDBRow className="text-center">
             <MDBCol md="4">
                 <img src="./Image/ma.png" width="30" height="30" />
-              <p>New York, 94126</p>
-              <p className="mb-md-0">United States</p>
+              <p>Kathmandu, Maitidevi</p>
+              <p className="mb-md-0">Nepal</p>
             </MDBCol>
             <MDBCol md="4">
              
                 <img src="./Image/pho.png" width="30" height="30" />
              
-              <p>+ 01 234 567 89</p>
+              <p>+ 977 984 456 2871</p>
               <p className="mb-md-0">Mon - Fri, 8:00-22:00</p>
             </MDBCol>
             <MDBCol md="4">
                 <img src="./Image/en.png" width="30" height="30" />
-              <p>info@gmail.com</p>
-              <p className="mb-md-0">sale@gmail.com</p>
+              <p>grocery@gmail.com</p>
+              <p className="mb-md-0">gharkogrocery@gmail.com</p>
             </MDBCol>
           </MDBRow>
         </MDBCol>

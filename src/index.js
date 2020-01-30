@@ -2,7 +2,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as serviceWorker from './serviceWorker';
 
 
 import {
@@ -25,6 +24,7 @@ import Login from './components/Login/Login'
 import Feedback from './components/Feedback/Feedback'
 import Home from './components/Home/Home'
 import About from './components/About/About'
+import Product from './components/Product/Product'
 import AddProduct from './admin/AddProduct/AddProduct'
 
 
@@ -112,26 +112,6 @@ class Index extends React.Component {
                 <Row style={{marginTop:'10px'}}>
                 <div>
 
-               {/* <Navbar variant="pills" className="mr-sm-6"
-                 bg="green" expand="lg">
-  <Navbar.Brand style={{marginRight:'550px'}} href="#home">Grocery</Navbar.Brand>
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link as={Link} to="/home" active={true} >Home</Nav.Link>
-      <Nav.Link as={Link} to="/about">About</Nav.Link>
-      <Nav.Link as={Link} to="/product">Product</Nav.Link>
-      <Nav.Link as={Link} to="/feedback">Contact Us</Nav.Link>
-      <Nav.Link as={Link} to="/registration">Sign Up</Nav.Link>
-      <Nav.Link as={Link} to="/login">Login</Nav.Link>
-       
-    </Nav>
-
-    <Form inline>
-
-    </Form>
-  </Navbar.Collapse>
-</Navbar>*/}
 
  <MDBNavbar color="blue-gradient" dark expand="md" >
         <MDBNavbarBrand style={{marginRight:'460px'}}>
@@ -171,7 +151,7 @@ class Index extends React.Component {
                 </Container>
 
  <Switch>
-		<Route exact path="/home">
+		<Route exact path="/">
                   < Home/>
                   </Route>
                   <Route exact path="/about">
@@ -188,6 +168,9 @@ class Index extends React.Component {
 
 		<Route exact path="/login">
                   < Login/>
+                  </Route>
+                    <Route exact path="/product">
+                  < Product/>
                   </Route>
 		<Route exact path="/addproduct">
                   < AddProduct/>

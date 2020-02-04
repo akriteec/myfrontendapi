@@ -1,5 +1,5 @@
 import React from "react";
-import {  MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBadge, MDBBtn } from "mdbreact";
+import {  MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBadge, MDBBtn,MDBTooltip,MDBIcon } from "mdbreact";
 import axios from 'axios';
 
 class Product extends React.Component {
@@ -70,7 +70,7 @@ class Product extends React.Component {
                     {prod.name}
                   </p>
               </h4>
-              <MDBBtn rounded gradient="blue" className="mb-3 mt-3">
+              <MDBBtn rounded gradient="blue" className="mb-3 mt-3" >
                 Add to Cart
               </MDBBtn>
             </MDBCardBody>

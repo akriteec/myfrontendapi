@@ -25,8 +25,10 @@ import Feedback from './components/Feedback/Feedback'
 import Home from './components/Home/Home'
 import About from './components/About/About'
 import Product from './components/Product/Product'
+import Cart from './components/Cart/Cart'
+import Adminlogin from './admin/Login/Login'
 import AddProduct from './admin/AddProduct/AddProduct'
-
+import ViewUser from './admin/ViewUser/ViewUser'
 
 class Index extends React.Component {
 
@@ -101,6 +103,11 @@ class Index extends React.Component {
             )
 
 }
+toggleCollapse = collapseID => () => {
+  this.setState(prevState => ({
+    collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+  }));
+}
     render() {
         return (
           <Container>
@@ -113,7 +120,7 @@ class Index extends React.Component {
                 <div>
 
 
- <MDBNavbar color="blue-gradient" dark expand="md" >
+ {/*<MDBNavbar color="blue-gradient" dark expand="md" >
         <MDBNavbarBrand style={{marginRight:'460px'}}>
           <strong className="white-text">GharkoGrocery</strong>
         </MDBNavbarBrand >
@@ -138,14 +145,67 @@ class Index extends React.Component {
             <MDBNavItem>
               <MDBNavLink as={Link} to="/login">Login</MDBNavLink>
             </MDBNavItem>
+
             <MDBNavItem>
             </MDBNavItem>
           </MDBNavbarNav>
+
         </MDBCollapse>
       </MDBNavbar>
+*/}
+          <MDBNavbar color="blue-gradient" style={{ marginTop: '20px' }} light>
+          <MDBContainer>
+            <MDBNavbarBrand style={{marginRight:'200px'}}>
+              <strong className="white-text">GharkoGrocery</strong>
+            </MDBNavbarBrand>
+                <MDBNavItem active>
+              <MDBNavLink className="white-text" as={Link} to="/home" active={true} >Home</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink className="white-text" as={Link} to="/about">About</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink className="white-text" as={Link} to="/product">Product</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink className="white-text" as={Link} to="/feedback">Feedback</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink className="white-text" as={Link} to="/registration">Regsitration</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink className="white-text" as={Link} to="/login">Login</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink className="white-text" as={Link} to="/cart">Cart</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+            </MDBNavItem>
+            <MDBNavbarToggler tag="button" className="aqua-gradient" onClick={this.toggleCollapse('navbarCollapse14')}>
+              <span className="white-text">
+                <img src="./Image/bars.png" style={{width:"20px", height:"20px"}} />
+              </span>
+            </MDBNavbarToggler>
+
+            <MDBCollapse id="navbarCollapse14" isOpen={this.state.collapseID} navbar>
+              <MDBNavbarNav left>
+                <MDBNavItem active>
+                  <MDBNavLink as={Link} to="/adminlogin">AdminLogin</MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink as={Link} to="/addproduct">Add Product</MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="#!">Profile</MDBNavLink>
+                </MDBNavItem>
+              </MDBNavbarNav>
+            </MDBCollapse>
+          </MDBContainer>
+        </MDBNavbar>
 
 
 
+            
                 </div>
                 </Row>
                 </Container>
@@ -157,6 +217,13 @@ class Index extends React.Component {
                   <Route exact path="/about">
                   < About/>
 		  </Route>
+
+      <Route exact path="/">
+                  < Home/>
+                  </Route>
+                  <Route exact path="/viewuser">
+                  < ViewUser/>
+      </Route>
 
         	 <Route exact path="/feedback">
                   < Feedback/>
@@ -172,7 +239,13 @@ class Index extends React.Component {
                     <Route exact path="/product">
                   < Product/>
                   </Route>
-		<Route exact path="/addproduct">
+                   <Route exact path="/cart">
+                  < Cart/>
+                  </Route>
+	<Route exact path="/adminlogin">
+                  < Adminlogin/>
+                  </Route>
+                  <Route exact path="/addproduct" >
                   < AddProduct/>
                   </Route>
 
@@ -192,8 +265,4 @@ class Index extends React.Component {
 }
 
 ReactDOM.render(<Index />, document.getElementById('root'))
-
-
-
-serviceWorker.unregister();
 

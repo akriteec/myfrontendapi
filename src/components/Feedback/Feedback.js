@@ -143,7 +143,7 @@ return (
                   icon="envelope" value={this.state.youremail} onChange={this.youremailChangeHandler}
                   label="Your email"
                   iconClass="grey-text"
-                  type="text"
+                  type="email"
                   id="form-email" 
                 />
               </div>
@@ -157,7 +157,7 @@ return (
                 />
               </div>
               <div className="text-center">
-                <MDBBtn color="light-blue" type="submit">Contact Us</MDBBtn>
+                <MDBBtn color="light-blue" type="submit" as Link={'/'}>Contact Us</MDBBtn>
               </div>
               </form>
             </MDBCardBody>

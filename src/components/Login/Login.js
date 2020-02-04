@@ -79,8 +79,6 @@ return (
   <Redirect to='/registration' />
   )
 
-// toast message
-
 }
 
 

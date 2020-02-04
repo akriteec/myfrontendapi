@@ -17,14 +17,14 @@ constructor(){
           <MDBRow>
             <MDBCol md="4" className="mb-md-0 mb-5">
                <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(10).jpg"
-                width="200px"
+                src="./Image/h.jpg"
+                width="220px"
                 height="150px"
                 className="rounded z-depth-1-half img-fluid"
                 alt="Sample avatar"
               />
               <h4 className="font-weight-bold dark-grey-text my-4">
-                Maria Kate
+                Maria Melyah
               </h4>
               <h6 className="text-uppercase grey-text mb-3">Photographer</h6>
               <MDBBtn tag="a" floating size="sm" className="mx-1 mb-0 btn-fb">
@@ -34,8 +34,8 @@ constructor(){
             <MDBCol md="4" className="mb-md-0 mb-5">
             
                 <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(27).jpg"
-                width="200px"
+                src="./Image/hhh.jpg"
+                width="160px"
                 height="150px"
                 className="rounded z-depth-1-half img-fluid"
                 alt="Sample avatar"
@@ -49,14 +49,14 @@ constructor(){
             <MDBCol md="4" className="mb-md-0 mb-5">
            
                <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-                width="200px"
-                height="150px"
+                src="./Image/hh.jpg"
+                width="220px"
+                height="250px"
                 className="rounded z-depth-1-half img-fluid"
                 alt="Sample avatar"
               />
               <h4 className="font-weight-bold dark-grey-text my-4">
-                Sarah Melyah
+                Sofhiya Kate
               </h4>
               <h6 className="text-uppercase grey-text mb-3">Web Developer</h6>
             </MDBCol>

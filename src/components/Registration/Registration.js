@@ -6,24 +6,38 @@ import Axios from 'axios';
 import 'mdbreact/dist/css/mdb.css'
 import { Container,MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody, MDBView} from 'mdbreact';
 import { Redirect } from 'react-router-dom';
+
+
 class Registration extends React.Component {
 
-constructor(){
-  super()
+constructor(props){
+  super(props)
 
   this.state = {
-
-    
     fullname:'',
     address:'',
     phone:'',
     email:'',
     password:'',
+    filename:'',
+    checkValidImage: '',
     validationMessage:'',
     redirect:false
 
   }
 }
+
+    handleFileSelected = event => {
+        this.setState({filename: event.target.files[0]})
+        //for image url
+        let reader = new FileReader();
+
+        reader.onloadend = () => {
+            this.setState({imagePreviewUrl: reader.result});
+        }
+
+        reader.readAsDataURL(event.target.files[0])
+    }
 
 
 fullnameChangeHandler = (event) => {
@@ -61,48 +75,48 @@ formSubmitHandler = (e) => {
   e.preventDefault()
 
 
-// use API call to post the data 
-//fetch byt default JS
-// Axios external package
-
 var headers = {
 
 'Content-Type':'application/json'
-// not 'x-form-urlencded '
-
 }
 
-var data = {
+ const fd = new FormData();
+            const imageName = this
+                .state
+                .filename
+                .name
+                .toLowerCase();
+            fd.append('imageFile', this.state.filename, imageName);
+            Axios
+                .post('http://192.168.1.65:3000/upload', fd)
+                .then(res => {
+                    console.log(res);
 
-  
+var data = {
   fullname:this.state.fullname,
   address:this.state.address,
   phone:this.state.phone,
   email:this.state.email,
-  password:this.state.password
+  password:this.state.password,
+  imageu:'imageFile-' + imageName
 
 }
 
-//mfetch method XMLHTTPREquest
-  Axios.post('http://localhost:3000/users/signup', data , headers)
+  Axios.post('http://192.168.1.65:3000/users/signup', data , headers)
 
 .then( (response) => {
   console.log(response.data.status);
-  if(response.status === 201){
+  if(response.status === 200){
 
     this.setState({redirect:true})
-
-    // redirect to login page 
   }
-
-
 
 })
 .catch( (err) =>  {
 
 })
 
-
+})
 
   // console.log(this.state)
 }
@@ -111,7 +125,7 @@ render(){
 
 //what to render based in state
 
-if(this.state.redirect){
+if(this.state.redirect === true){
 
 return (
   <Redirect to='/login' />
@@ -120,7 +134,15 @@ return (
 // toast message
 
 }
-
+ let $imagePreview = (
+            <div className="previewText image-container">Please select an Image for Preview</div>
+        );
+        if (this.state.imagePreviewUrl) {
+            $imagePreview = (
+                <div className="image-container text-center"><img src={this.state.imagePreviewUrl} alt="icon" width="200" height="200"/>
+                </div>
+            );
+        }
 
 
   return(
@@ -153,6 +175,7 @@ return (
                     success="right"
                   />
                   <MDBInput
+                  
                     label="Address" value={this.state.address} onChange={this.addressChangeHandler}
                     icon="home"
                     group
@@ -187,6 +210,17 @@ return (
                     type="password"
                     validate
                   />
+
+                  <MDBInput
+                    type="file"
+                                    inputProps={{
+                                    accept: 'image/*'
+                                }}
+                                    name="avatar"
+                                    onChange={this.handleFileSelected}
+                                    ref={fileInput => this.fileInput = fileInput}/> {$imagePreview}
+                        
+                  
                 
                 </div>
                 <div className="text-center py-6 mt-6">

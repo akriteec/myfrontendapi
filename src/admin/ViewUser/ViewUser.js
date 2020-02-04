@@ -38,7 +38,7 @@ render(){
           return(
   	<MDBContainer>
   <h2 className="h1-responsive font-weight-bold text-center my-3">
-        View Users
+        Registered Users
       </h2>
   	 <MDBRow > 
   <MDBTable style={{marginTop:'20px', width:'1050px', marginLeft:'15px'}} >

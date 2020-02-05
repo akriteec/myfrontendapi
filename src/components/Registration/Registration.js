@@ -88,7 +88,7 @@ var headers = {
                 .toLowerCase();
             fd.append('imageFile', this.state.filename, imageName);
             Axios
-                .post('http://192.168.1.65:3000/upload', fd)
+                .post('http://localhost:3000/upload', fd)
                 .then(res => {
                     console.log(res);
 
@@ -102,7 +102,7 @@ var data = {
 
 }
 
-  Axios.post('http://192.168.1.65:3000/users/signup', data , headers)
+  Axios.post('http://localhost:3000/users/signup', data , headers)
 
 .then( (response) => {
   console.log(response.data.status);

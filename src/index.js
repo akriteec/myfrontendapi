@@ -28,7 +28,9 @@ import Product from './components/Product/Product'
 import Cart from './components/Cart/Cart'
 import Adminlogin from './admin/Login/Login'
 import AddProduct from './admin/AddProduct/AddProduct'
+import EditProduct from './admin/AddProduct/EditProduct'
 import ViewUser from './admin/ViewUser/ViewUser'
+import ViewFeedback from './admin/ViewFeedback/ViewFeedback'
 
 class Index extends React.Component {
 
@@ -159,7 +161,7 @@ toggleCollapse = collapseID => () => {
               <strong className="white-text">GharkoGrocery</strong>
             </MDBNavbarBrand>
                 <MDBNavItem active>
-              <MDBNavLink className="white-text" as={Link} to="/home" active={true} >Home</MDBNavLink>
+              <MDBNavLink className="white-text" as={Link} to="/" active={true} >Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="white-text" as={Link} to="/about">About</MDBNavLink>
@@ -195,8 +197,12 @@ toggleCollapse = collapseID => () => {
                 <MDBNavItem>
                   <MDBNavLink as={Link} to="/addproduct">Add Product</MDBNavLink>
                 </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink to="#!">Profile</MDBNavLink>
+               
+                 <MDBNavItem>
+                  <MDBNavLink as={Link} to="/viewuser">View User</MDBNavLink>
+                </MDBNavItem>
+                 <MDBNavItem>
+                  <MDBNavLink as={Link} to="/viewfeedback">View Feedback</MDBNavLink>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCollapse>
@@ -221,9 +227,7 @@ toggleCollapse = collapseID => () => {
       <Route exact path="/">
                   < Home/>
                   </Route>
-                  <Route exact path="/viewuser">
-                  < ViewUser/>
-      </Route>
+                 
 
         	 <Route exact path="/feedback">
                   < Feedback/>
@@ -249,7 +253,17 @@ toggleCollapse = collapseID => () => {
                   < AddProduct/>
                   </Route>
 
-                  
+                   <Route exact path="/viewuser">
+                  < ViewUser/>
+      </Route>
+       <Route exact path="/viewfeedback">
+                  < ViewFeedback/>
+      </Route>
+
+        <Route exact path="/editproduct">
+                  < EditProduct/>
+      </Route>
+
                 </Switch>
       
                 </Router>

@@ -1,7 +1,5 @@
 import React from 'react'
 import Img from 'react-image'
-
-
 import { 
   Form, Button, Container, FormGroup, FormText, Row,Image
 } from 'react-bootstrap'
@@ -14,8 +12,8 @@ import './Feedback.css';
 
 class Feedback extends React.Component {
 
-constructor(){
-  super()
+constructor(props){
+  super(props)
 
 
   this.state = {
@@ -68,7 +66,7 @@ var data = {
 
   yourname:this.state.yourname,
   youremail:this.state.youremail,
-  yourfeedback:this.state.yourfeedback,
+  yourfeedback:this.state.yourfeedback
 
 }
 
@@ -77,11 +75,9 @@ var data = {
 
 .then( (response) => {
   console.log(response.data.status);
-  if(response.status === 201){
+  if(response.status === 200){
 
     this.setState({redirect:true})
-
-    // redirect to login page 
   }
 
 
@@ -91,19 +87,15 @@ var data = {
 
 })
 
-
-
-  // console.log(this.state)
 }
 
 render(){
 
-//what to render based in state
 
 if(this.state.redirect){
 
 return (
-  <Redirect to='/login' />
+  <Redirect to='/feedback' />
   )
 
 // toast message
@@ -157,7 +149,7 @@ return (
                 />
               </div>
               <div className="text-center">
-                <MDBBtn color="light-blue" type="submit" as Link={'/'}>Contact Us</MDBBtn>
+                <MDBBtn color="light-blue" type="submit">Contact Us</MDBBtn>
               </div>
               </form>
             </MDBCardBody>

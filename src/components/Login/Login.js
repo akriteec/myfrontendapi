@@ -6,7 +6,7 @@ import Axios from 'axios';
 import 'mdbreact/dist/css/mdb.css'
 import { Container,MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody, MDBView,ModalFooter} from 'mdbreact';
 import { Redirect,Link } from 'react-router-dom';
-class Registration extends React.Component {
+class Login extends React.Component {
 
 constructor(){
   super()
@@ -153,4 +153,4 @@ return (
   );
 }};
 
-export default Registration;
+export default Login;

@@ -161,7 +161,7 @@ toggleCollapse = collapseID => () => {
               <strong className="white-text">GharkoGrocery</strong>
             </MDBNavbarBrand>
                 <MDBNavItem active>
-              <MDBNavLink className="white-text" as={Link} to="/home" active={true} >Home</MDBNavLink>
+              <MDBNavLink className="white-text" as={Link} to="/" active={true} >Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="white-text" as={Link} to="/about">About</MDBNavLink>

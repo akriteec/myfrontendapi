@@ -13,7 +13,8 @@ constructor(){
 
   this.state = {
     email:'',
-    password:''
+    password:'',
+    redirect:false
 
   }
 }
@@ -54,18 +55,22 @@ var data = {
 
 //mfetch method XMLHTTPREquest
    Axios.post('http://localhost:3000/users/login', data , headers)
-  .then(function(response){
+  .then( (response) => {
+  console.log(response.data);
+  if(response.status === 200){
 
-    console.log(response.data)
+    this.setState({redirect:true})
+  }
 
     //store the token in local storage of broser for future use 
 
     localStorage.setItem("token",response.data.userToken)
 
   })
-  .catch(function(err){
+ .catch( (err) =>  {
 
   })
+
 
 }
 
@@ -73,10 +78,10 @@ render(){
 
 //what to render based in state
 
-if(this.state.redirect){
+if(this.state.redirect === true){
 
 return (
-  <Redirect to='/registration' />
+  <Redirect to='/userprofile' />
   )
 
 }
@@ -126,7 +131,6 @@ return (
                   gradient="blue"
                   
                   className="btn-block z-depth-1a"
-                  onClick={this.state.redirect}
                  >
                   Login
                 </MDBBtn>

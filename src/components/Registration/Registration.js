@@ -110,9 +110,19 @@ var data = {
 
     this.setState({redirect:true})
   }
+localStorage.setItem('token', response.data.token)
 
+this.setState({
+                    fullname:'',
+    address:'',
+    phone:'',
+    email:'',
+    password:'',
+    filename:'',
+                    redirect: true
+                  })
 })
-.catch( (err) =>  {
+.catch( (err) => {
 
 })
 

@@ -27,6 +27,7 @@ import About from './components/About/About'
 import Product from './components/Product/Product'
 import Cart from './components/Cart/Cart'
 import UserProfile from './components/UserProfile/UserProfile'
+import UpdateProduct from './admin/AddProduct/UpdateProduct'
 import Adminlogin from './admin/Login/Login'
 import AddProduct from './admin/AddProduct/AddProduct'
 import EditProduct from './admin/AddProduct/EditProduct'
@@ -271,6 +272,9 @@ toggleCollapse = collapseID => () => {
 
        <Route exact path="/userprofile">
                   < UserProfile/>
+      </Route>
+       <Route exact path="/updateproduct">
+                  < UpdateProduct/>
       </Route>
 
                 </Switch>

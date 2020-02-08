@@ -21,7 +21,7 @@ constructor(){
 
  componentDidMount()
     {
-         Axios.get("http://localhost:3000/products")
+         Axios.get("http://localhost:3000/products/")
         .then(res=>{
             console.log(res)
             this.setState({product:res.data,path:'http://localhost:3000/uploads/'})
@@ -48,6 +48,19 @@ constructor(){
      return false;
    }
  };
+
+ getProduct = pid => {
+  alert(pid);
+  Axios.get("http://localhost:3000/products/" + pid);
+};
+    editProduct = pid => {
+
+  
+     Axios.put("http://localhost:3000/update/" + pid);
+    
+  
+ };
+
 
 render(){
 
@@ -95,7 +108,7 @@ render(){
           <td>{us.name}</td>
            <td>{us.price}</td>
           <td>{us.description}</td>
-          <td> <Link to="/addproduct"><img style={{height:"50px", width:"70px"}} src='./Image/ed.png' /></Link></td> 
+          <td><Link to="/updateproduct"><img style={{height:"50px", width:"70px"}} onClick={() => this.getProduct(us._id) || this.editProduct(us._id) }   src='./Image/ed.png' /></Link></td> 
           <td> <img style={{height:"50px", width:"50px"}} onClick={() => this.deleteProduct(us._id)} src='./Image/de.png' /></td>
           
        {/*   <td> <MDBBtn type="submit" onClick={() => this.deleteProduct( us._id)} >

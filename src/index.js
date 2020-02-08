@@ -26,6 +26,8 @@ import Home from './components/Home/Home'
 import About from './components/About/About'
 import Product from './components/Product/Product'
 import Cart from './components/Cart/Cart'
+import UserProfile from './components/UserProfile/UserProfile'
+import UpdateProduct from './admin/AddProduct/UpdateProduct'
 import Adminlogin from './admin/Login/Login'
 import AddProduct from './admin/AddProduct/AddProduct'
 import EditProduct from './admin/AddProduct/EditProduct'
@@ -147,6 +149,7 @@ toggleCollapse = collapseID => () => {
             <MDBNavItem>
               <MDBNavLink as={Link} to="/login">Login</MDBNavLink>
             </MDBNavItem>
+            
 
             <MDBNavItem>
             </MDBNavItem>
@@ -181,6 +184,9 @@ toggleCollapse = collapseID => () => {
             <MDBNavItem>
               <MDBNavLink className="white-text" as={Link} to="/cart">Cart</MDBNavLink>
             </MDBNavItem>
+             <MDBNavItem>
+              <MDBNavLink className="white-text" as={Link} to="/userprofile">Profile</MDBNavLink>
+            </MDBNavItem>
             <MDBNavItem>
             </MDBNavItem>
             <MDBNavbarToggler tag="button" className="aqua-gradient" onClick={this.toggleCollapse('navbarCollapse14')}>
@@ -195,7 +201,7 @@ toggleCollapse = collapseID => () => {
                   <MDBNavLink as={Link} to="/adminlogin">AdminLogin</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                  <MDBNavLink as={Link} to="/addproduct">Add Product</MDBNavLink>
+                  <MDBNavLink as={Link} to="/editproduct">Add Product</MDBNavLink>
                 </MDBNavItem>
                
                  <MDBNavItem>
@@ -262,6 +268,13 @@ toggleCollapse = collapseID => () => {
 
         <Route exact path="/editproduct">
                   < EditProduct/>
+      </Route>
+
+       <Route exact path="/userprofile">
+                  < UserProfile/>
+      </Route>
+       <Route exact path="/updateproduct">
+                  < UpdateProduct/>
       </Route>
 
                 </Switch>

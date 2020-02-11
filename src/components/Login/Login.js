@@ -1,4 +1,6 @@
 import React from 'react'
+import Navigation from '../Navigation'
+import Footer from '../Footer'
 import { 
   Form, Button
 } from 'react-bootstrap'
@@ -6,19 +8,43 @@ import Axios from 'axios';
 import 'mdbreact/dist/css/mdb.css'
 import { Container,MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody, MDBView,ModalFooter} from 'mdbreact';
 import { Redirect,Link } from 'react-router-dom';
+import {FormGroup,Alert} from 'reactstrap'
 class Login extends React.Component {
 
-constructor(){
-  super()
+constructor(props){
+  super(props)
 
   this.state = {
     email:'',
     password:'',
+    emailError:'',
+    passwordError:'',
     redirect:false
 
   }
 }
 
+
+validate = () => {
+  let emailError = "";
+  let passwordError = "";
+
+if (!this.state.email.includes("@")) {
+emailError = "invalid email"
+}
+if (!this.state.password) {
+passwordError = "Password should be greater than 6"
+}
+if (emailError || passwordError) {
+this.setState({
+emailError,
+passwordError,
+
+})
+return false;
+}
+return true;
+}
 
 emailChangeHandler = (event) => {
 
@@ -33,16 +59,13 @@ this.setState({password: event.target.value})
 
 formSubmitHandler = (e) => {
   e.preventDefault()
+ const isValid = this.validate();
+  if (isValid) {
 
-
-// use API call to post the data 
-//fetch byt default JS
-// Axios external package
 
 var headers = {
 
 'Content-Type':'application/json'
-// not 'x-form-urlencded '
 
 }
 
@@ -52,11 +75,10 @@ var data = {
   password:this.state.password
 
 }
-
-//mfetch method XMLHTTPREquest
    Axios.post('http://localhost:3000/users/login', data , headers)
   .then( (response) => {
   console.log(response.data);
+   localStorage.setItem('token',response.data.token)
   if(response.status === 200){
 
     this.setState({redirect:true})
@@ -64,14 +86,14 @@ var data = {
 
     //store the token in local storage of broser for future use 
 
-    localStorage.setItem("token",response.data.userToken)
+   
 
   })
- .catch( (err) =>  {
+.catch((err) => console.log(err.response))
+        this.setState({ email: '', password: '' })
 
-  })
 
-
+}
 }
 
 render(){
@@ -91,6 +113,8 @@ return (
   return(
 
 <Container>
+ <Navigation />
+
 <div>
  <MDBContainer>
       <MDBRow>
@@ -106,6 +130,7 @@ return (
                 <div className="grey-text">
 
 
+                <FormGroup>
                   <MDBInput
                     label="Email" value={this.state.email} onChange={this.emailChangeHandler}
                     icon="envolope"
@@ -115,7 +140,15 @@ return (
                     error="wrong"
                     success="right"
                   />
+                   {this.state.emailError
+? (
+<Alert color="danger" size="sm" className="mt-2">
+{this.state.emailError}</Alert>
+)
+: null}
+                  </FormGroup>
                   
+                  <FormGroup>
                   <MDBInput
                     label="Password" value={this.state.password} onChange={this.passwordChangeHandler}
                     icon="lock"
@@ -123,6 +156,13 @@ return (
                     type="password"
                     validate
                   />
+                  {this.state.passwordError
+? (
+<Alert color="danger" size="sm" className="mt-2">
+{this.state.passwordError}</Alert>
+)
+: null}
+</FormGroup>
                 
                 </div>
                 <div className="text-center py-6 mt-6">
@@ -131,6 +171,7 @@ return (
                   gradient="blue"
                   
                   className="btn-block z-depth-1a"
+
                  >
                   Login
                 </MDBBtn>
@@ -153,6 +194,7 @@ return (
 
     
       </div>
+  <Footer />
       </Container>
   );
 }};

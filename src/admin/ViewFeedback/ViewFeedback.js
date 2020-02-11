@@ -1,15 +1,16 @@
 
 import React from 'react'
 
-import{MDBTable, MDBRow, MDBTableBody, MDBTableHead,MDBContainer} from 'mdbreact';
+import{MDBTable, MDBBtn,MDBRow, MDBTableBody, MDBTableHead,MDBContainer,Link} from 'mdbreact';
 import Axios from 'axios';
+import Navigation from '../Navigation'
 
 
 
 class ViewUser extends React.Component {
 
-constructor(){
-  super()
+constructor(props){
+  super(props)
 
 
   this.state = {
@@ -32,16 +33,27 @@ constructor(){
         })
     }
 
+ deleteFeedback = fid => {
+   var x=confirm("You want to delete?");
+   if(x){
+     Axios.delete("http://localhost:3000/feedback/" + fid);
+     location.reload();
+   }else{
+     return false;
+   }
+ };
+
 render(){
 
  const{contactus}=this.state
           return(
     <MDBContainer>
+    <Navigation />
   <h2 className="h1-responsive font-weight-bold text-center my-3">
         Feedbacks
       </h2>
      <MDBRow > 
-  <MDBTable style={{marginTop:'20px', width:'1050px', marginLeft:'15px'}} >
+  <MDBTable style={{marginTop:'20px', width:'1000px', marginLeft:'40px'}} >
    
       <MDBTableHead color="primary-color" textWhite>
       
@@ -49,6 +61,7 @@ render(){
           <th>Name</th>
           <th>Email</th>
           <th>Query</th>
+          <th></th>
         </tr>
       </MDBTableHead>
 {contactus.map(us => (
@@ -57,6 +70,9 @@ render(){
           <td>{us.yourname}</td>
           <td>{us.youremail}</td>
           <td>{us.yourfeedback}</td>
+          <td> <MDBBtn color="danger" type="submit" onClick={() => this.deleteFeedback(us._id)} >
+           Delete </MDBBtn>
+           </td>
         </tr>
       </MDBTableBody>
      ))}

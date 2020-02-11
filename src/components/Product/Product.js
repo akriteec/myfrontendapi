@@ -1,6 +1,8 @@
 import React from "react";
-import {  MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBadge, MDBBtn,MDBTooltip,MDBIcon } from "mdbreact";
+import { Container, MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBadge, MDBBtn,MDBTooltip,MDBIcon } from "mdbreact";
 import axios from 'axios';
+import Navigation from '../Navigation'
+import Footer from '../Footer'
 
 class Product extends React.Component {
 
@@ -31,14 +33,16 @@ class Product extends React.Component {
           //this.state.posts
           const{product}=this.state
           return(
-
+<Container>
+ <Navigation />
     <section className="text-center my-5">
+    
       <h2 className="h1-responsive font-weight-bold text-center my-5">
         Our Products
       </h2>
       <MDBRow > {product.map(prod => (
         <MDBCol lg="3" md="6" className="mb-lg-0 mb-4" key={product.id}>
-          <MDBCard className="align-items-center" style={{height:"400px"}}>
+          <MDBCard className="align-items-center" style={{height:"400px", marginBottom:"30px"}}>
             <MDBCardImage  style={{height:"200px"}}
            
                 className="img-fluid"
@@ -71,7 +75,7 @@ class Product extends React.Component {
                   </p>
               </h4>
               <MDBBtn rounded gradient="blue" className="mb-3 mt-3" >
-                Add to Cart
+                Buy Now
               </MDBBtn>
             </MDBCardBody>
           </MDBCard>
@@ -79,6 +83,8 @@ class Product extends React.Component {
            ))}
       </MDBRow>
     </section>
+    <Footer />
+    </Container>
   );
 }
 }

@@ -1,8 +1,9 @@
 
 import React from 'react'
 
-import{MDBTable, MDBRow, MDBTableBody, MDBTableHead,MDBContainer} from 'mdbreact';
+import{Container, MDBTable, MDBRow, MDBBtn,MDBTableBody, MDBTableHead,MDBContainer,Link} from 'mdbreact';
 import Axios from 'axios';
+import Navigation from '../Navigation'
 
 
 
@@ -32,16 +33,30 @@ constructor(){
         })
     }
 
+deleteUser = vuid => {
+   var x=confirm("You want to delete?");
+   if(x){
+     Axios.delete("http://localhost:3000/users/" + vuid);
+     location.reload();
+   }else{
+     return false;
+   }
+ };
+
 render(){
 
  const{user}=this.state
           return(
+            <div>
+            <Container>
+             <Navigation />
   	<MDBContainer>
+   
   <h2 className="h1-responsive font-weight-bold text-center my-3">
         Registered Users
       </h2>
   	 <MDBRow > 
-  <MDBTable style={{marginTop:'20px', width:'1050px', marginLeft:'15px'}} >
+  <MDBTable style={{marginTop:'20px', width:'1000px', marginLeft:'40px'}} >
    
       <MDBTableHead color="primary-color" textWhite>
       
@@ -50,6 +65,7 @@ render(){
           <th>Address</th>
           <th>Phone Number</th>
           <th>Email</th>
+          <th></th>
         </tr>
       </MDBTableHead>
 {user.map(us => (
@@ -59,6 +75,9 @@ render(){
           <td>{us.address}</td>
           <td>{us.phone}</td>
           <td>{us.email}</td>
+         <td> <Link><MDBBtn color="danger" type="submit" onClick={() => this.deleteUser( us._id)} >
+           Delete </MDBBtn></Link>
+           </td>
         </tr>
       </MDBTableBody>
      ))}
@@ -66,6 +85,8 @@ render(){
     
     </MDBRow>
     </MDBContainer>
+    </Container>
+    </div>
   );
 }
 }

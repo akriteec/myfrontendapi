@@ -3,13 +3,13 @@ import React from 'react'
 // import {Link} from 'react-router-dom'
 import{MDBTable, MDBRow, MDBTableBody, MDBTableHead,MDBContainer,MDBIMage,MDBBtn,MDBInput,MDBCol,Link} from 'mdbreact';
 import Axios from 'axios';
-
+import Navigation from '../Navigation'
 
 
 class EditProduct extends React.Component {
 
-constructor(){
-  super()
+constructor(props){
+  super(props)
 
 
   this.state = {
@@ -21,7 +21,7 @@ constructor(){
 
  componentDidMount()
     {
-         Axios.get("http://localhost:3000/products/")
+         Axios.get("http://localhost:3000/products")
         .then(res=>{
             console.log(res)
             this.setState({product:res.data,path:'http://localhost:3000/uploads/'})
@@ -50,7 +50,7 @@ constructor(){
  };
 
  getProduct = pid => {
-  alert(pid);
+
   Axios.get("http://localhost:3000/products/" + pid);
 };
     editProduct = pid => {
@@ -67,7 +67,7 @@ render(){
  const{product}=this.state
           return(
   	<MDBContainer>
-    
+    <Navigation />
   <h2 className="h1-responsive font-weight-bold text-center my-3">
        Products
       </h2>
@@ -87,7 +87,7 @@ render(){
                 </MDBBtn>
                 </Link>
                 </MDBCol>
-  <MDBTable style={{marginTop:'20px', width:'1050px', marginLeft:'15px'}} >
+  <MDBTable style={{marginTop:'20px', width:'990px', marginLeft:'50px' , marginRight:'30px'}} >
    
       <MDBTableHead color="primary-color" textWhite>
       
@@ -108,8 +108,8 @@ render(){
           <td>{us.name}</td>
            <td>{us.price}</td>
           <td>{us.description}</td>
-          <td><Link to="/updateproduct"><img style={{height:"50px", width:"70px"}} onClick={() => this.getProduct(us._id) || this.editProduct(us._id) }   src='./Image/ed.png' /></Link></td> 
-          <td> <img style={{height:"50px", width:"50px"}} onClick={() => this.deleteProduct(us._id)} src='./Image/de.png' /></td>
+          <td><Link to={`/updateproduct/my/${us._id}`}><img style={{height:"50px", width:"70px"}}    src='./Image/ed.png' /></Link></td> 
+          <td> <Link><img style={{height:"50px", width:"50px"}} onClick={() => this.deleteProduct(us._id)} src='./Image/de.png' /></Link></td>
           
        {/*   <td> <MDBBtn type="submit" onClick={() => this.deleteProduct( us._id)} >
            Delete </MDBBtn>

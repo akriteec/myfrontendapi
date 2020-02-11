@@ -4,9 +4,10 @@ import {
     Carousel, Container
 
 } from 'react-bootstrap'
+import Footer from '../Footer'
 import {  MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBIcon, MDBView, MDBBtn } from "mdbreact";
 import { Redirect, Link } from 'react-router-dom';
-
+import Navigation from '../Navigation'
 
 class Home extends React.Component {
 
@@ -77,6 +78,7 @@ return (
   render(){
   return(
    <Container>
+   <Navigation />
    <Carousel>
         <Carousel.Item>
           <img
@@ -119,6 +121,7 @@ return (
         </Carousel.Item>
       </Carousel>
       < this.Footer/>
+      <Footer />
       </Container>
 
   );

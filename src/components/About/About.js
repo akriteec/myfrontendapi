@@ -1,6 +1,7 @@
 import React from "react";
-import {  MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBView,MDBMask, MDBContainer } from "mdbreact";
-
+import { Container,  MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBView,MDBMask, MDBContainer } from "mdbreact";
+import Navigation from '../Navigation'
+import Footer from '../Footer'
 class About extends React.Component {
 
 constructor(){
@@ -71,6 +72,7 @@ constructor(){
 Header = () => {
 return(
 <section className="my-5">
+
         <h2 className="h1-responsive font-weight-bold text-center my-5">
           Why is it so great?
         </h2>
@@ -141,7 +143,10 @@ return(
 
   render(){
   return(
+<Container>
+<Navigation />
     <MDBCard className="my-5 px-5 pb-5">
+    
       <MDBCardBody>
         <MDBRow>
           <MDBCol md="12">
@@ -182,6 +187,8 @@ return(
          < this.Footer/>
       </MDBCardBody>
     </MDBCard>
+    <Footer />
+    </Container>
 
   );
 }

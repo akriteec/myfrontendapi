@@ -3,8 +3,10 @@ import Img from 'react-image'
 import { 
   Form, Button, Container, FormGroup, FormText, Row,Image
 } from 'react-bootstrap'
-import{MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput} from 'mdbreact';
-import { Label, Input } from 'reactstrap'
+import Navigation from '../Navigation'
+import Footer from '../Footer'
+import{ MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput} from 'mdbreact';
+import { Label, Input, Alert } from 'reactstrap'
 import { Link, Redirect } from 'react-router-dom'
 import Axios from 'axios';
 import './Feedback.css';
@@ -22,9 +24,37 @@ constructor(props){
     yourfeedback:'',
     validationMessage:'',
      color: "#9ebd4b",
+     nameError:'',
+     emailError:'',
+     feedbackError:'',
     redirect:false
 
   }
+}
+
+validate = () => {
+  let nameError = "";
+  let emailError = "";
+  let feedbackError = "";
+
+  if (!this.state.yourname) {
+nameError = "yourname cannot be empty";
+}
+if (!this.state.youremail.includes("@")) {
+emailError = "invalid email"
+}
+if (this.state.yourfeedback) {
+feedbackError = "feedback cannot be empty"
+}
+if (nameError || emailError || feedbackError) {
+this.setState({
+nameError,
+emailError,
+feedbackError,
+})
+return false;
+}
+return true;
 }
 
 yournameChangeHandler = (event) => {
@@ -48,29 +78,22 @@ this.setState({yourfeedback: event.target.value})
 }
 
 formSubmitHandler = (e) => {
-  e.preventDefault()
-
-
-// use API call to post the data 
-//fetch byt default JS
-// Axios external package
+  e.preventDefault();
+   const isValid = this.validate();
+  if (isValid) {
 
 var headers = {
 
 'Content-Type':'application/json'
-// not 'x-form-urlencded '
 
 }
 
 var data = {
-
   yourname:this.state.yourname,
   youremail:this.state.youremail,
   yourfeedback:this.state.yourfeedback
-
 }
 
-//mfetch method XMLHTTPREquest
   Axios.post('http://localhost:3000/feedback/addFeedback', data , headers)
 
 .then( (response) => {
@@ -88,6 +111,7 @@ var data = {
 })
 
 }
+}
 
 render(){
 
@@ -104,7 +128,8 @@ return (
 
 
   return(
- 
+ <Container>
+  <Navigation />
     <section className="my-5">
       <h2 className="h1-responsive font-weight-bold text-center my-5">
         Contact us
@@ -129,6 +154,12 @@ return (
                   type="text"
                   id="form-name" 
                 />
+                {this.state.nameError
+? (
+<Alert color="danger" size="sm" className="mt-2">
+{this.state.nameError}</Alert>
+)
+: null}
               </div>
               <div className="md-form">
                 <MDBInput
@@ -138,6 +169,12 @@ return (
                   type="email"
                   id="form-email" 
                 />
+                {this.state.emailError
+? (
+<Alert color="danger" size="sm" className="mt-2">
+{this.state.emailError}</Alert>
+)
+: null}
               </div>
               <div className="md-form">
                 <MDBInput
@@ -147,6 +184,12 @@ return (
                   type="textarea"
                   id="form-subject" 
                 />
+                {this.state.feedbackError
+? (
+<Alert color="danger" size="sm" className="mt-2">
+{this.state.feedbackError}</Alert>
+)
+: null}
               </div>
               <div className="text-center">
                 <MDBBtn color="light-blue" type="submit">Contact Us</MDBBtn>
@@ -192,6 +235,8 @@ return (
         </MDBCol>
       </MDBRow>
     </section>
+    <Footer />
+    </Container>
   );
 }
 }

@@ -3,133 +3,184 @@ import {
   Form, Button
 } from 'react-bootstrap'
 import Axios from 'axios';
+
+import { FormGroup, CustomInput } from 'reactstrap'
 import 'mdbreact/dist/css/mdb.css'
 import { Container,MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody, MDBView} from 'mdbreact';
 import { Redirect } from 'react-router-dom';
 
-
-class UpdateProfile extends React.Component {
+class UpdateProduct extends React.Component {
 
 constructor(props){
   super(props)
 
   this.state = {
-    product:[],
+
     path:'',
+    us:'',
+   name:'',
+   price:'',
+   description:'',
+   selectedFile:'',
+   ID:'',
+    config: {
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            },
+            selectedFile: null,
+    redirect:false
 
   }
 }
+nameChangehandler = (event) => {
 
-  getProduct = pid => {
-   Axios.get("http://localhost:3000/products/" + pid);
- };
+this.setState({name: event.target.value})
+  
+}
+priceChangeHandler = (event) => {
+
+this.setState({price: event.target.value})
+  
+}
+descriptionChangeHandler = (event) => {
 
 
-componentDidMount()
-    {
-         Axios.get("http://localhost:3000/products/")
+  this.setState({description: event.target.value})
+}
+
+componentWillMount() {
+  var usId= this.props.match.params.id;
+  Axios.get("http://localhost:3000/my/" +usId ,this.state.config)
         .then(res=>{
-            console.log(res)
-            this.setState({product:res.data,path:'http://localhost:3000/uploads/'})
+            console.log(res.data)
+            this.setState({
+              us:res.data,
+              path:'http://localhost:3000/uploads/',
+              name:res.data.name,
+              price:res.data.price,
+              description:res.data.description,
+              imagep:res.data.imagep,
+              ID: res.data._id
+
+            })
         })
-       
-        .catch(err=>{
-            console.log(err)
-        })
-
-
-    }
-
-    componentWillUnMount(){
-      this.serverRequest.abort();
-    }
-
-
-
-
-    editProduct = pid => {
+   
       
-  
-     Axios.put("http://localhost:3000/update/" + pid);
-    
-  
- };
+ }
+     handleFileSelected = event => {
+        this.setState({selectedFile: event.target.files[0]})
+        //for image url
+        let reader = new FileReader();
 
+        reader.onloadend = () => {
+            this.setState({imagePreviewUrl: reader.result});
+        }
 
+        reader.readAsDataURL(event.target.files[0])
+    }
+handleSubmit = event => {
+        event.preventDefault();
+       
 
+            var headers = {
+                'Content-Type': 'application/json'
+            }
+
+            
+                    var data = {
+                        name: this.state.name,
+                        price: this.state.price,
+                        description: this.state.description,
+      
+                       // Drimage: 'imageFile-' + this.state.selectedFile.name
+                    }
+                    Axios
+                        .put('http://localhost:3000/update/' + this.state.ID, data, this.state.config)
+                        .then((res) => {
+                            console.log(res.data)
+                            if (res.status == 200) {
+                                this.setState({redirect: true})
+                            }
+
+                        })
+                        .catch((err) => {
+                            console.log(err)
+                        })
+    }
 
 render(){
 
+if(this.state.redirect ){
 
-if(this.state.redirect === true){
-
-return (
-  <Redirect to='/editproduct' />
-  )
-
+   return(<Redirect to="/editproduct"/>)
+  
 }
-  const{product}=this.state
+const {us} = this.state
+
+    
   return(
+
 <Container>
 <div>
- <MDBContainer>
+ <MDBContainer >
       <MDBRow>
-        <MDBCol md="6" style={{ marginLeft:"250px"
- }}>
+      <MDBCol md="3">
+        </MDBCol>
+        <MDBCol md="6" style={{marginTop:20}}>
           <MDBCard>
-          {product.map(product => (
-            <MDBCardBody key={product.id}>
-              <form onSubmit={this.formSubmitHandler} >
-                <p className="h4 text-center py-4">ADD PRODUCT</p>
+            <MDBCardBody>
+              <form onSubmit={this.handleSubmit} >
+                <p className="h4 text-center py-4">Update Product</p>
                 <div className="grey-text">
-                
+           
                   <MDBInput 
-                    label=" Product Name" value={product.name} onChange={this.nameChangeHandler}
-                    icon="user"
+                    label="  Name" 
+                    value={this.state.name} 
+                    onChange={this.nameChangehandler}
                     group
                     type="text"
                     validate
+                    id="name"
+                    name="name"
                     error="wrong"
-                    success="right"
-                  />
+                    success="right"/>
                   <MDBInput
                   
-                    label="Price" value={product.price} onChange={this.priceChangeHandler}
-                    icon="home"
+                    label="Price"
+                     value={this.state.price} 
+                      onChange={this.priceChangeHandler}
+                    
                     group
                     type="text"
                     validate
                     error="wrong"
-                    success="right"
-                  />
+                    success="right"/>
                   <MDBInput
-                    label="Description" value={product.description} onChange={this.descriptionChangeHandler}
-                    icon="envolope"
+                    label="Description" 
+                    value={this.state.description} 
+                   onChange={this.descriptionChangeHandler}
+                    
                     group
                     type="text"
                     validate
                     error="wrong"
-                    success="right"
-                  />
-                 
-                
+                    success="right"/>
+
                 </div>
                 <div className="text-center py-6 mt-6">
                  <MDBBtn
                   type="submit"
-                  gradient="dusty-grass"
+                  gradient="blue"
                   rounded
                   className="btn-block z-depth-1a"
-             
                  >
-                  UPDATE PRODUCT
+                  Update 
                 </MDBBtn>
                 </div>
               </form>
             </MDBCardBody>
-            ))}
           </MDBCard>
         </MDBCol>
+
       </MDBRow>
     </MDBContainer>
 
@@ -137,6 +188,7 @@ return (
       </div>
       </Container>
   );
-}};
+}
+};
 
-export default UpdateProfile;
+export default UpdateProduct;

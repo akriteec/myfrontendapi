@@ -1,5 +1,6 @@
 import React from 'react'
-import Navigation from '../Navigation'
+import Navigation from '../../components/Navigation'
+import Footer from '../Footer';
 import { 
   Form, Button
 } from 'react-bootstrap'
@@ -120,9 +121,9 @@ return (
     
         <MDBCol md="5" style={{marginLeft:'250px',marginTop:'15px'}} >
           <MDBCard style={{marginTop:'-1px',height:'428px'}}>
-            <MDBCardBody className="mx-6">
+            <MDBCardBody className="mx-4">
               <form onSubmit={this.formSubmitHandler} >
-                <p className="h4 text-center py-4">Login</p>
+                <p className="h4 text-center py-4">AdminLogin</p>
                 <div className="grey-text">
 
 
@@ -181,6 +182,7 @@ return (
 
     
       </div>
+      <Footer />
       </Container>
   );
 }};

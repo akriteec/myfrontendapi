@@ -89,7 +89,7 @@ return (
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
+            <h3></h3>
             
           </Carousel.Caption>
         </Carousel.Item>
@@ -99,10 +99,10 @@ return (
           height = "500px"
             className="d-block w-100"
             src="https://images.squarespace-cdn.com/content/v1/56c623a907eaa033562424bb/1472517836831-BIRMO2D0TYQGHOVN1Q16/ke17ZwdGBToddI8pDm48kFA9zd0KVW7B7zvvizl8CJYUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4BPu10St3TBAUQYVKcKOEUgBUYQ7_rAKz3ua5P61LnR90rif4Svt5YafJynk1sUzUoF4VrfKQlp04kF3vD/wholefoodsAD1.jpg?format=2500w"
-            alt="Second slide"
+            alt=""
           />
           <Carousel.Caption>
-            <h3>Second slide label</h3>
+            <h3></h3>
           
           </Carousel.Caption>
         </Carousel.Item>
@@ -115,7 +115,7 @@ return (
           />
 
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            <h3></h3>
             
           </Carousel.Caption>
         </Carousel.Item>

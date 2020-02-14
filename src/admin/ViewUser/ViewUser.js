@@ -3,7 +3,8 @@ import React from 'react'
 
 import{Container, MDBTable, MDBRow, MDBBtn,MDBTableBody, MDBTableHead,MDBContainer,Link} from 'mdbreact';
 import Axios from 'axios';
-import Navigation from '../Navigation'
+import Navigation from '../Navigation';
+import Footer from '../Footer';
 
 
 
@@ -86,6 +87,7 @@ render(){
     </MDBRow>
     </MDBContainer>
     </Container>
+     <Footer />
     </div>
   );
 }

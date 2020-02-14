@@ -4,6 +4,7 @@ import {
 } from 'react-bootstrap'
 import Axios from 'axios';
 import Navigation from '../Navigation'
+import Footer from '../Footer';
 import {FormGroup,Alert} from 'reactstrap'
 import 'mdbreact/dist/css/mdb.css'
 import { Container,MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody, MDBView} from 'mdbreact';
@@ -256,6 +257,7 @@ const {product} = this.state
 
     
       </div>
+       <Footer />
       </Container>
   );
 }};

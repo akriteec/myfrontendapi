@@ -4,6 +4,7 @@ import React from 'react'
 import{MDBTable, MDBRow, MDBTableBody, MDBTableHead,MDBContainer,MDBIMage,MDBBtn,MDBInput,MDBCol,Link} from 'mdbreact';
 import Axios from 'axios';
 import Navigation from '../Navigation'
+import Footer from '../Footer';
 
 
 class EditProduct extends React.Component {
@@ -49,17 +50,17 @@ constructor(props){
    }
  };
 
- getProduct = pid => {
+//  getProduct = pid => {
 
-  Axios.get("http://localhost:3000/products/" + pid);
-};
-    editProduct = pid => {
+//   Axios.get("http://localhost:3000/products/" + pid);
+// };
+//     editProduct = pid => {
 
   
-     Axios.put("http://localhost:3000/update/" + pid);
+//      Axios.put("http://localhost:3000/update/" + pid);
     
   
- };
+//  };
 
 
 render(){
@@ -109,17 +110,16 @@ render(){
            <td>{us.price}</td>
           <td>{us.description}</td>
           <td><Link to={`/updateproduct/my/${us._id}`}><img style={{height:"50px", width:"70px"}}    src='./Image/ed.png' /></Link></td> 
-          <td> <Link><img style={{height:"50px", width:"50px"}} onClick={() => this.deleteProduct(us._id)} src='./Image/de.png' /></Link></td>
+          <td><img style={{height:"50px", width:"50px"}} onClick={() => this.deleteProduct(us._id)} src='./Image/de.png' /></td>
           
-       {/*   <td> <MDBBtn type="submit" onClick={() => this.deleteProduct( us._id)} >
-           Delete </MDBBtn>
-           </td>*/}
+        
         </tr>
       </MDBTableBody>
      ))}
     </MDBTable>
     
     </MDBRow>
+     <Footer />
     </MDBContainer>
   );
 }

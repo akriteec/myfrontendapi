@@ -24,19 +24,11 @@ class Navigation extends Component {
     }
 
     render() {
-        return (
-          <Container>
-  
-            <div> {/* for wrapping jsx components or use Fragment <> </> */}
-                
-               
-                <Container>
-                <Row style={{marginTop:'10px'}}>
-                <div>
-<MDBNavbar color="blue-gradient" dark expand="md" >
+  return (
+      <MDBNavbar color="blue" dark expand="md">
         <MDBNavbarBrand style={{marginRight:'490px'}}>
-          <strong className="white-text">GharkoGrocery</strong>
-        </MDBNavbarBrand >
+          <strong className="white-text">GharKoGrocery</strong>
+        </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
@@ -49,34 +41,16 @@ class Navigation extends Component {
             <MDBNavItem>
               <MDBNavLink as={Link} to="/viewuser">View User</MDBNavLink>
             </MDBNavItem>
-            <MDBNavItem>
+             <MDBNavItem>
               <MDBNavLink as={Link} to="/viewfeedback">View Feedback</MDBNavLink>
             </MDBNavItem>
-            
-
-            <MDBNavItem>
-            </MDBNavItem>
+     
           </MDBNavbarNav>
-
+         
         </MDBCollapse>
       </MDBNavbar>
-            
-                </div>
-
-                </Row>
-
-                </Container>
-
- 
-
-
-                </div>
-                 
-                </Container>
-
-        )
-    }
-
+    );
+  }
 }
 
 export default withRouter(Navigation)

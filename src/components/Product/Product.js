@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, MDBRow, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBadge, MDBBtn,MDBTooltip,MDBIcon } from "mdbreact";
+import { Container, MDBRow, Link, MDBCol, MDBCard, MDBCardImage, MDBCardBody, MDBBadge, MDBBtn,MDBTooltip,MDBIcon } from "mdbreact";
 import axios from 'axios';
 import Navigation from '../Navigation'
 import Footer from '../Footer'
@@ -74,9 +74,15 @@ class Product extends React.Component {
                     {prod.name}
                   </p>
               </h4>
+
+
+              <Link to={`/buy/my/${prod._id}`}>
               <MDBBtn rounded gradient="blue" className="mb-3 mt-3" >
-                Buy Now
+               Buy Now  
               </MDBBtn>
+              </Link>
+
+              
             </MDBCardBody>
           </MDBCard>
         </MDBCol>

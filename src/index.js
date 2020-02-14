@@ -36,6 +36,8 @@ import ViewFeedback from './admin/ViewFeedback/ViewFeedback'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
 import Dashboard from './admin/Dashboard/Dashboard'
+import Buy from './components/Buy/Buy'
+import Order from './components/order'
 class Index extends React.Component {
 
     constructor() {
@@ -106,6 +108,8 @@ class Index extends React.Component {
                   < UserProfile/>
       </Route>
        <Route exact path="/updateproduct/my/:id" component={UpdateProduct}/>
+        <Route exact path="/buy/my/:id" component={Buy}/>
+
         <Route exact path="/navigation">
                   < Navigation/>
       </Route>
@@ -115,7 +119,9 @@ class Index extends React.Component {
       <Route exact path="/footer">
                   < Footer/>
       </Route>
-     
+       <Route exact path="/order">
+                  < Order/>
+      </Route>
 
                 </Switch>
       

@@ -3,7 +3,8 @@ import {
   Form, Button
 } from 'react-bootstrap'
 import Axios from 'axios';
-
+import Navigation from '../Navigation'
+import Footer from '../Footer';
 import { FormGroup, CustomInput } from 'reactstrap'
 import 'mdbreact/dist/css/mdb.css'
 import { Container,MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn, MDBCard, MDBCardBody, MDBView} from 'mdbreact';
@@ -90,8 +91,6 @@ handleSubmit = event => {
                         name: this.state.name,
                         price: this.state.price,
                         description: this.state.description,
-      
-                       // Drimage: 'imageFile-' + this.state.selectedFile.name
                     }
                     Axios
                         .put('http://localhost:3000/update/' + this.state.ID, data, this.state.config)
@@ -120,6 +119,7 @@ const {us} = this.state
   return(
 
 <Container>
+<Navigation />
 <div>
  <MDBContainer >
       <MDBRow>
@@ -186,6 +186,7 @@ const {us} = this.state
 
     
       </div>
+       <Footer />
       </Container>
   );
 }

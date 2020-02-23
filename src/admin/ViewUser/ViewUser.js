@@ -85,9 +85,10 @@ render(){
     </MDBTable>
     
     </MDBRow>
+     <Footer />
     </MDBContainer>
     </Container>
-     <Footer />
+    
     </div>
   );
 }

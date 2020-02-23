@@ -10,23 +10,23 @@ import Footer from '../Footer';
 
 class ViewOrder extends React.Component {
 
-constructor(){
-  super()
+constructor(props){
+  super(props)
 
 
   this.state = {
-  	buy:[],
-  	path:'',
+    order:[],
+    path:'',
 
   }
 }
 
  componentDidMount()
     {
-         Axios.get("http://localhost:3000/buy")
+         Axios.get("http://localhost:3000/view")
         .then(res=>{
             console.log(res)
-            this.setState({user:res.data,path:'http://localhost:3000/uploads/'})
+            this.setState({order:res.data,path:'http://localhost:3000/uploads/'})
         })
        
         .catch(err=>{
@@ -37,7 +37,7 @@ constructor(){
 deleteUser = vuid => {
    var x=confirm("You want to delete?");
    if(x){
-     Axios.delete("http://localhost:3000/buy/" + vuid);
+     Axios.delete("http://localhost:3000/delete/" + vuid);
      location.reload();
    }else{
      return false;
@@ -46,36 +46,38 @@ deleteUser = vuid => {
 
 render(){
 
- const{buy}=this.state
+ const{order}=this.state
           return(
             <div>
             <Container>
              <Navigation />
-  	<MDBContainer>
+            
+    <MDBContainer>
+    
    
   <h2 className="h1-responsive font-weight-bold text-center my-3">
-        Registered Users
+        All Orders
       </h2>
-  	 <MDBRow > 
+     <MDBRow > 
   <MDBTable style={{marginTop:'20px', width:'1000px', marginLeft:'40px'}} >
    
       <MDBTableHead color="primary-color" textWhite>
       
         <tr>
-          <th>Fullname</th>
-          <th>Address</th>
+          <th>Name</th>
+          <th>Price</th>
           <th>Phone Number</th>
           <th>Email</th>
           <th></th>
         </tr>
       </MDBTableHead>
-{buy.map(us => (
+{order.map(us => (
       <MDBTableBody key={us.id}>
         <tr>
-          <td>{us.fullname}</td>
-          <td>{us.address}</td>
-          <td>{us.phone}</td>
-          <td>{us.email}</td>
+          <td>{us.pname}</td>
+          <td>{us.pprice}</td>
+          <td>{us.pphone}</td>
+          <td>{us.pemail}</td>
          <td> <Link><MDBBtn color="danger" type="submit" onClick={() => this.deleteUser( us._id)} >
            Delete </MDBBtn></Link>
            </td>
@@ -85,12 +87,13 @@ render(){
     </MDBTable>
     
     </MDBRow>
+     <Footer />
     </MDBContainer>
     </Container>
-     <Footer />
+    
     </div>
   );
 }
 }
 
-export default ViewUser;
+export default ViewOrder;

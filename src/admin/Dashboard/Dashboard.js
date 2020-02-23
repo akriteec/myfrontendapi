@@ -75,7 +75,7 @@ export default class Dashboard extends Component {
  <MDBContainer style={{
   paddingLeft:"200px", marginTop:"20px"}}>
       <MDBRow>
-        <h3>Welcome to Admin Panel</h3>  <Button color='warning' onClick={this.handleLogout}> Logout</Button>
+        <h3>Welcome to Admin Panel</h3>  
         <MDBCol md="8">
          
           <MDBCard>

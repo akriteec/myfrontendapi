@@ -29,7 +29,7 @@ toggleCollapse = () => {
     render() {
   return (
       <MDBNavbar color="blue" dark expand="md">
-        <MDBNavbarBrand style={{marginRight:'440px'}}>
+        <MDBNavbarBrand style={{marginRight:'380px'}}>
           <strong className="white-text">GharKoGrocery</strong>
         </MDBNavbarBrand >
         <MDBNavbarToggler onClick={this.toggleCollapse} />
@@ -46,6 +46,9 @@ toggleCollapse = () => {
             </MDBNavItem>
              <MDBNavItem>
               <MDBNavLink as={Link} to="/feedback">Feedback</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink as={Link} to="/userprofile">Profile</MDBNavLink>
             </MDBNavItem>
              <MDBNavItem>
               <MDBNavLink as={Link} to="/registration">Regsitration</MDBNavLink>

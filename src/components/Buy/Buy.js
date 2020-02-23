@@ -101,9 +101,9 @@ handleSubmit = event => {
 
             
                     var data = {
-                        pname: this.state.name,
-                        pprice: this.state.price,
-                        pdescription: this.state.description,
+                        pname: this.state.pname,
+                        pprice: this.state.pprice,
+                        pdescription: this.state.pdescription,
                         pemail: this.state.pemail,
                         pphone: this.state.pphone
       
@@ -132,7 +132,7 @@ render(){
 
 if(this.state.redirect ){
 
-   return(<Redirect to="/product"/>)
+   return(<Redirect to="/order"/>)
   
 }
 const {us} = this.state
@@ -153,11 +153,11 @@ const {us} = this.state
               <form onSubmit={this.handleSubmit} >
                 <p className="h4 text-center py-4">Buy Product</p>
                 <div className="grey-text">
-           
+
                   <MDBInput 
                     label="  Name" 
                     value={this.state.pname} 
-                    onChange={this.pnameChangehandler}
+                   // onChange={this.pnameChangehandler}
                     group
                     type="text"
                     validate
@@ -169,7 +169,7 @@ const {us} = this.state
                   
                     label="Price"
                      value={this.state.pprice} 
-                      onChange={this.ppriceChangeHandler}
+                      //onChange={this.ppriceChangeHandler}
                     
                     group
                     type="text"
@@ -179,7 +179,7 @@ const {us} = this.state
                   <MDBInput
                     label="Description" 
                     value={this.state.pdescription} 
-                   onChange={this.pdescriptionChangeHandler}
+                  // onChange={this.pdescriptionChangeHandler}
                     
                     group
                     type="text"

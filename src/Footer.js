@@ -33,10 +33,10 @@ class Footer extends Component {
               Useful links
             </h6>
             <p>
-              <a  as={Link} to="/home">About Us</a>
+              <a  as={Link} to="/about">About Us</a>
             </p>
             <p>
-              <a  as={Link} to="/home">Products</a>
+              <a  as={Link} to="/product">Products</a>
             </p>
             <p>
               <a  as={Link} to="/feedback">Feedback</a>

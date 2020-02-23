@@ -26,7 +26,6 @@ constructor(props){
      color: "#9ebd4b",
      nameError:'',
      emailError:'',
-     feedbackError:'',
     redirect:false
 
   }
@@ -43,14 +42,11 @@ nameError = "yourname cannot be empty";
 if (!this.state.youremail.includes("@")) {
 emailError = "invalid email"
 }
-if (this.state.yourfeedback) {
-feedbackError = "feedback cannot be empty"
-}
-if (nameError || emailError || feedbackError) {
+
+if (nameError || emailError) {
 this.setState({
 nameError,
 emailError,
-feedbackError,
 })
 return false;
 }
@@ -119,7 +115,7 @@ render(){
 if(this.state.redirect){
 
 return (
-  <Redirect to='/feedback' />
+  <Redirect to='/' />
   )
 
 // toast message
@@ -184,12 +180,7 @@ return (
                   type="textarea"
                   id="form-subject" 
                 />
-                {this.state.feedbackError
-? (
-<Alert color="danger" size="sm" className="mt-2">
-{this.state.feedbackError}</Alert>
-)
-: null}
+               
               </div>
               <div className="text-center">
                 <MDBBtn color="light-blue" type="submit">Contact Us</MDBBtn>

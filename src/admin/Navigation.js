@@ -44,6 +44,12 @@ class Navigation extends Component {
              <MDBNavItem>
               <MDBNavLink as={Link} to="/viewfeedback">View Feedback</MDBNavLink>
             </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink as={Link} to="/vieworder">View Order</MDBNavLink>
+            </MDBNavItem>
+             <NavItem>
+        <Button color='warning' onClick={this.handleLogout}> Logout</Button>
+       </NavItem>
      
           </MDBNavbarNav>
          

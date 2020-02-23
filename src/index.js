@@ -38,6 +38,7 @@ import Footer from './components/Footer'
 import Dashboard from './admin/Dashboard/Dashboard'
 import Buy from './components/Buy/Buy'
 import Order from './components/order'
+import ViewOrder from './admin/ViewOrder/ViewOrder'
 class Index extends React.Component {
 
     constructor() {
@@ -121,6 +122,9 @@ class Index extends React.Component {
       </Route>
        <Route exact path="/order">
                   < Order/>
+      </Route>
+        <Route exact path="/vieworder">
+                  < ViewOrder/>
       </Route>
 
                 </Switch>
